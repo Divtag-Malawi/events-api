@@ -30,7 +30,7 @@ app.use(
 
 app.use(cookieParser());
 
-app.use(API.rootUrl, routes);
+app.use(API.baseUrl, routes);
 
 app.use(function(req, res, next) {
   res.sendStatus(400);
