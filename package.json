@@ -18,6 +18,7 @@
     "mocha": "^7.0.0",
     "mongoose": "^5.8.9",
     "morgan": "~1.9.1",
-    "redis": "^2.8.0"
+    "redis": "^2.8.0",
+    "yargs-parser": "^16.1.0"
   }
 }
