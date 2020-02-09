@@ -1,5 +1,5 @@
-const mongoose = require('../connection');
-const Schema = mongoose.Schema;
+const mongoose = require('../connection')
+const Schema = mongoose.Schema
 
 const MemberSchema = new Schema({
   memberId: String,
@@ -9,8 +9,8 @@ const MemberSchema = new Schema({
   avatar: String,
   banner: String,
   role: String
-});
+})
 
-const Member = mongoose.model('Member', MemberSchema);
+const Member = mongoose.model('Member', MemberSchema)
 
-module.exports = Member;
+module.exports = Member

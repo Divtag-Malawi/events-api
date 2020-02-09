@@ -1,21 +1,21 @@
-const Event = require('../../../db/mongodb/models/event');
+const Event = require('../../../db/mongodb/models/event')
 
-const public = {};
-const private = {};
+const public = {}
+const private = {}
 
-public.row = async (conditions, projections) => {
+public.findRow = async (conditions, projections) => {
   try {
-    return {conditions, projections};
+    return {conditions, projections}
   } catch (e) {
-    return e;
+    return e
   }
 }
 
 public.find = async (conditions, projections) => {
   try {
-    return {conditions, projections};
+    return {conditions, projections}
   } catch (e) {
-    return e;
+    return e
   }
 }
 
@@ -39,6 +39,6 @@ public.deleteOrWhere = async (conditions, config) => {
 
 }
 
-const EventsDb = public;
+const EventsDb = public
 
-module.exports = EventsDb;
+module.exports = EventsDb
