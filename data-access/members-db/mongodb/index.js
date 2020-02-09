@@ -100,8 +100,18 @@ public.update = async (conditions, update, options = null) => {
   }
 }
 
-public.deleteWhere = async (conditions, options) => {
-
+public.deleteWhere = async (conditions, multiple = false) => {
+  try {
+    let result = false;
+    
+    if (!multiple) {
+      result = await Member.deleteOne(conditions)
+    } else {
+      result = await Member.deleteMany(conditions)
+    }
+  } catch(e) {
+    return e
+  }
 }
 
 public.deleteOrWhere = async (conditions, options) => {
