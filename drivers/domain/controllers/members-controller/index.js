@@ -39,7 +39,12 @@ public.updateMember = async (req, res) => {
 public.deleteMember = async (req, res) => {
   try {
     const {memberId} = req.param
-    console.log(req.params,'....', memberId)
+    if (isUndefined(memberId)) {
+      res.status(400).send('Bad Request: Unknown memberId')
+    } else {
+      const result = await membersDb.deleteWhere({memberId})
+      res.json(result)
+    }
   } catch (e) {
     throw new Error(e)
   }
