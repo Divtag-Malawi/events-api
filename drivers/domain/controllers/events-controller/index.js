@@ -25,7 +25,7 @@ public.updateMultipleEvents = async (req, res) => {
   try {
     const {filter} = req.query
     const data = req.body
-    
+
     console.log(req.body);
   } catch (e) {
     res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
@@ -43,7 +43,6 @@ public.updateSingleEvent = async (req, res) => {
   }
 }
 
-
 public.deleteMultipleEvent = async (req, res) => {
   try {
     const conditions = req.headers.deleteQuery
@@ -55,6 +54,15 @@ public.deleteMultipleEvent = async (req, res) => {
 public.deleteSingleEvent = async (req, res) => {
   try {
     const {eventId} = req.params
+  } catch (e) {
+    res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
+  }
+}
+
+public.getParticipants = async (req, res) => {
+  try {
+    const {eventId} = req.params
+
   } catch (e) {
     res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
   }
@@ -73,6 +81,15 @@ public.addParticipants = async (req, res) => {
 public.deleteParticipant = async (req, res) => {
   try {
     const {participantId} = req.params;
+
+  } catch (e) {
+    res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
+  }
+}
+
+public.getSpeakers = async (req, res) => {
+  try {
+    const {eventId} = req.params
 
   } catch (e) {
     res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
