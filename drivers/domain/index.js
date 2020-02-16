@@ -10,30 +10,33 @@ const speakersController = require('./controllers/speakers-controller')
 // Events Resource
 router.get('/events', eventsController.getAllEvents)
       .get('/events/:eventId', eventsController.getSingleEvent)
-      .get('/events/:eventId/participants', participantsController.getParticipants)
-      .get('/events/:eventId/participants/:participantId', participantsController.getSingleParticipant)
-      .get('/events/:eventId/speaker',  speakersController.getSpeakers)
-      .get('/events/:eventId/speakers/:speakerId', speakersController.getSingleSpeaker)
-
       .post('/events', eventsController.createEvent)
-      .post('/events/:eventId/participants', participantsController.addParticipants)
-      .post('/event/:eventId/speakers', speakersController.addSpeakers)
-
       .put('/events', eventsController.updateMultipleEvents)
       .put('/events/:eventId', eventsController.updateSingleEvent)
-      
       .delete('/events/', eventsController.deleteMultipleEvent)
       .delete('/events/:eventId', eventsController.deleteSingleEvent)
+
+      //Event Participants
+router.get('/events/:eventId/participants', participantsController.getParticipants)
+      .get('/events/:eventId/participants/:participantId', participantsController.getSingleParticipant)
+      .post('/events/:eventId/participants', participantsController.addParticipants)
       .delete('/events/:eventId/participants/:participantId', participantsController.deleteParticipant)
+
+      // Event location
+router.get('/events/:eventId/speaker',  speakersController.getSpeakers)
+      .get('/events/:eventId/speakers/:speakerId', speakersController.getSingleSpeaker)
+      .post('/event/:eventId/speakers', speakersController.addSpeakers)
       .delete('/event/:eventId/speakers/:speakerId', speakersController.deleteSpeaker)
 
+      // Event Invitation
 router.get('/events/invitation', invitationController.sendInvitation)
       .delete('/events/invitation/:id', invitationController.changeInvitation)
       .delete('/events/invitation/:id', invitationController.cancelInvitation)
 
+      // Event Subscription
 router.post('/events/subscriptions', subscriptionController.subscribe)
       .delete('/events/subscriptions/:subsId', subscriptionController.unsubscribe)
-
+      // Event Members
 router.post('/events/members', membersController.createMember)
       .put('/events/members/:memberId', membersController.updateMember)
       .delete('/events/members/:memberId', membersController.deleteMember)
