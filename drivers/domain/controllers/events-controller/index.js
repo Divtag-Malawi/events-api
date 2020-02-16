@@ -21,6 +21,82 @@ public.createEvent = async (req, res) => {
   }
 }
 
+public.updateMultipleEvents = async (req, res) => {
+  try {
+    const {filter} = req.query
+    const data = req.body
+    
+    console.log(req.body);
+  } catch (e) {
+    res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
+  }
+}
+
+public.updateSingleEvent = async (req, res) => {
+  try {
+    const {eventId} = req.params
+    const data = req.body
+
+    res.json({eventId})
+  } catch (e) {
+    res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
+  }
+}
+
+
+public.deleteMultipleEvent = async (req, res) => {
+  try {
+    const conditions = req.headers.deleteQuery
+  } catch (e) {
+    res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
+  }
+}
+
+public.deleteSingleEvent = async (req, res) => {
+  try {
+    const {eventId} = req.params
+  } catch (e) {
+    res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
+  }
+}
+
+public.addParticipants = async (req, res) => {
+  try {
+    const {eventId} = req.params
+    const participants = req.body;
+
+  } catch (e) {
+    res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
+  }
+}
+
+public.deleteParticipant = async (req, res) => {
+  try {
+    const {participantId} = req.params;
+
+  } catch (e) {
+    res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
+  }
+}
+
+public.addSpeakers = async (req, res) => {
+  try {
+    const speakers = req.body;
+
+  } catch (e) {
+    res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
+  }
+}
+
+public.deleteSpeaker = async (req, res) => {
+  try {
+    const {speakerId} = req.params
+
+  } catch (e) {
+    res.status(400).send(`'Bad Request:' ${new Error(e).message}`);
+  }
+}
+
 
 const EventsController = public;
 

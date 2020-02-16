@@ -13,16 +13,17 @@ router.get('/events', eventsController.getAllEvents)
       .get('/events/:eventId/speaker')
       .get('/events/:eventId/speakers/:speakerId')
 
-      .post('/events')
-      .post('/events/:eventId/participants')
-      .post('/event/:eventId/speakers')
+      .post('/events', eventsController.createEvent)
+      .post('/events/:eventId/participants', eventsController.addParticipants)
+      .post('/event/:eventId/speakers', eventsController.addSpeakers)
 
-      .put('/events')
-      .put('/events/:eventId')
-
-      .delete('/events/:eventId')
-      .delete('/events/:eventId/participants/:participantId')
-      .delete('/event/:eventId/speakers/:speakerId')
+      .put('/events', eventsController.updateMultipleEvents)
+      .put('/events/:eventId', eventsController.updateSingleEvent)
+      
+      .delete('/events/', eventsController.deleteMultipleEvent)
+      .delete('/events/:eventId', eventsController.deleteSingleEvent)
+      .delete('/events/:eventId/participants/:participantId', eventsController.deleteParticipant)
+      .delete('/event/:eventId/speakers/:speakerId', eventsController.deleteSpeaker)
 
 router.get('/events/invitation', invitationController.sendInvitation)
       .delete('/events/invitation/:id', invitationController.changeInvitation)
