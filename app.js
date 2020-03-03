@@ -3,9 +3,8 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 // const cors = require('cors');
-const {API} = require('./config');
+const {API, ROUTES} = require('./config');
 
-const routes = require('./drivers/domain');
 
 const app = express();
 
@@ -30,7 +29,7 @@ app.use(
 
 app.use(cookieParser());
 
-app.use(API.baseUrl, routes);
+app.use(API.baseUrl, ROUTES);
 
 app.use(function(req, res, next) {
   res.sendStatus(400);

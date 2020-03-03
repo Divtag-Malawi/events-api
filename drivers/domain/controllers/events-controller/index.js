@@ -17,7 +17,7 @@ public.getSingleEvent = async (req, res) => {
   try {
     const {eventId} = req.params
     const result = await eventsDb.find();
-    
+
     res.json({result});
   } catch (e) {
     throw new Error(e).message;

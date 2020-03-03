@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-const eventsController = require('./controllers/events-controller')
-const membersController = require('./controllers/members-controller')
-const subscriptionController = require('./controllers/subscription-controller')
-const invitationController = require('./controllers/invitation-controller')
-const participantsController = require('./controllers/participants-controller')
-const speakersController = require('./controllers/speakers-controller')
+const eventsController = require('../drivers/domain/controllers/events-controller')
+const membersController = require('../drivers/domain/controllers/members-controller')
+const subscriptionController = require('../drivers/domain/controllers/subscription-controller')
+const invitationController = require('../drivers/domain/controllers/invitation-controller')
+const participantsController = require('../drivers/domain/controllers/participants-controller')
+const speakersController = require('../drivers/domain/controllers/speakers-controller')
 
 // Events Resource
 router.get('/events', eventsController.getAllEvents)

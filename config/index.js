@@ -1,4 +1,5 @@
 const httpStatusInfo = 'http://divtag.com/events/docs/errors/$';
+const router = require('./router.js')
 
 module.exports = {
   NODE_ENV: process.env.NODE_ENV,
@@ -35,5 +36,6 @@ module.exports = {
       code: 3003, 
       info: httpStatusInfo.replace('$', '3003')
     }
-  }
+  },
+  ROUTES: router
 }
