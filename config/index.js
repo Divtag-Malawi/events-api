@@ -1,5 +1,5 @@
 const httpStatusInfo = 'http://divtag.com/events/docs/errors/$';
-const router = require('./router.js')
+const router = require('./router')
 
 module.exports = {
   NODE_ENV: process.env.NODE_ENV,
@@ -7,15 +7,7 @@ module.exports = {
   API: {
     protocol: 'http://',
     domain: 'localhost',
-    ip: 'localhost',
-    baseUrl: '/api/v1'
-  },
-  Mongo: {
-    username: '',
-    password: '',
-    hostname: 'localhost',
-    port: '27017',
-    dbname: 'eventsDataCenter'
+    baseUrl: '/api/v1.0'
   },
   HTTP_STATUS: {
     BAD_REQUEST: {

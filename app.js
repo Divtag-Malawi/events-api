@@ -5,7 +5,6 @@ const logger = require('morgan');
 // const cors = require('cors');
 const {API, ROUTES} = require('./config');
 
-
 const app = express();
 
 // app.use(
@@ -32,7 +31,7 @@ app.use(cookieParser());
 app.use(API.baseUrl, ROUTES);
 
 app.use(function(req, res, next) {
-  res.sendStatus(400);
+  res.status(400).send('Bad Request');
 });
 
 app.use(function(err, req, res, next) {

@@ -1,30 +1,18 @@
-const EventEmitter = require("events").EventEmitter;
-const emitter = new EventEmitter();
 const mongoose = require("mongoose");
-const {Mongo, Events} = require("../../config");
-const {hostname, port, dbname} = Mongo;
+const {DB, OPTIONS} = require('./mongo-config');
 
 mongoose.Promise = global.Promise;
 
+// Debugging MongoDB
 // mongoose.set('debug', true);
 
-/**
- * Establish a connection to mongoDB
- */
-const mongoConnectUrl = `mongodb://${hostname}:${port}/${dbname}`;
-const mongoOptions = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-  useFindAndModify: false
-};
+const mongoClient = `mongodb://${DB.hostname}:${DB.port}/${DB.dbname}`;
 
 async function connectDatabase() {
   try {
-    const connection = await mongoose.connect(mongoConnectUrl, mongoOptions);
-    // emitter.emit(Events.DB_CONN_OK, connection);
+    return await mongoose.connect(mongoClient, OPTIONS);
   } catch (e) {
-    // emitter.emit(Events.DB_CONN_ERR, e);
+    throw new Error(e).message;
   }
 }
 
