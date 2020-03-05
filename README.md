@@ -10,7 +10,7 @@
 - OS: Windows 10 x64
 - Test: Mocha, Chai
 
-## Structure
+## Project Structure
 
   `bin`
   `config`
