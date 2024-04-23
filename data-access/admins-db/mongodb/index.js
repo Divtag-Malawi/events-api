@@ -1,9 +1,9 @@
 const Admin = require('../../../db/mongodb/models/admin');
 
-const public = {};
-const private = {};
+const publicAccess = {};
+const privateAccess = {};
 
-public.row = async (conditions, projections) => {
+publicAccess.row = async (conditions, projections) => {
   try {
     return {conditions, projections};
   } catch (e) {
@@ -11,7 +11,7 @@ public.row = async (conditions, projections) => {
   }
 }
 
-public.find = async (conditions, projections) => {
+publicAccess.find = async (conditions, projections) => {
   try {
     return {conditions, projections};
   } catch (e) {
@@ -19,26 +19,26 @@ public.find = async (conditions, projections) => {
   }
 }
 
-public.findOrWhere = async (conditions, projections) => {
+publicAccess.findOrWhere = async (conditions, projections) => {
   
 }
 
-public.create = async conditions => {
+publicAccess.create = async conditions => {
 
 }
 
-public.update = async (conditions, update, config) => {
+publicAccess.update = async (conditions, update, config) => {
 
 }
 
-public.deleteWhere = async (conditions, config) => {
+publicAccess.deleteWhere = async (conditions, config) => {
 
 }
 
-public.deleteOrWhere = async (conditions, config) => {
+publicAccess.deleteOrWhere = async (conditions, config) => {
 
 }
 
-const AdminDb = public;
+const AdminDb = publicAccess;
 
 module.exports = AdminDb;
