@@ -1,10 +1,10 @@
 const Member = require('../../../db/mongodb/models/member');
 const {isEmpty, isArray, isNull, isUndefined} = require('lodash')
 
-const public = {}
-const private = {}
+const publicAccess = {}
+const privateAccess = {}
 
-private.mapDocument = data => ({
+privateAccess.mapDocument = data => ({
   id: data._id,
   memberId: data.memberId,
   firstname: data.firstname,
@@ -14,19 +14,19 @@ private.mapDocument = data => ({
   role: data.role
 })
 
-private.serialize = payload => {
+privateAccess.serialize = payload => {
   if (!payload || isNull(payload)) {
     return null
   }
 
   if (isArray(payload)) {
-    return payload.map(private.mapDocument)
+    return payload.map(privateAccess.mapDocument)
   }
 
-  return private.mapDocument(payload)
+  return privateAccess.mapDocument(payload)
 }
 
-public.finRow = async (conditions, projections = '') => {
+publicAccess.finRow = async (conditions, projections = '') => {
   try {
     let result = {};
 
@@ -42,7 +42,7 @@ public.finRow = async (conditions, projections = '') => {
   }
 }
 
-public.find = async (conditions, projections) => {
+publicAccess.find = async (conditions, projections) => {
   try {
     return {conditions, projections};
   } catch (e) {
@@ -50,15 +50,15 @@ public.find = async (conditions, projections) => {
   }
 }
 
-public.findOrWhere = async (conditions, projections) => {
+publicAccess.findOrWhere = async (conditions, projections) => {
   
 }
 
-public.create = async data => {
+publicAccess.create = async data => {
   try {
     const {memberId, firstname, lastname, username, avatar, role} = data
     let result = null
-    const existence = await public.finRow({memberId})
+    const existence = await publicAccess.finRow({memberId})
 
     if (isEmpty(existence)) {
       const eventMember = new Member();
@@ -73,13 +73,13 @@ public.create = async data => {
       result = await eventMember.save();
     }
 
-    return private.serialize(result)
+    return privateAccess.serialize(result)
   } catch (e) {
     return e
   }
 }
 
-public.update = async (conditions, update, options = null) => {
+publicAccess.update = async (conditions, update, options = null) => {
   try {
     let result = false
     const {multiple = false} = options
@@ -91,7 +91,7 @@ public.update = async (conditions, update, options = null) => {
     }
 
     if (isUndefined(result.nModified)) {
-      return private.serialize(result)
+      return privateAccess.serialize(result)
     }
 
     return result;
@@ -100,24 +100,22 @@ public.update = async (conditions, update, options = null) => {
   }
 }
 
-public.deleteWhere = async (conditions, multiple = false) => {
+publicAccess.deleteWhere = async (conditions, multiple = false) => {
   try {
-    let result = false;
-    
     if (!multiple) {
-      result = await Member.deleteOne(conditions)
-    } else {
-      result = await Member.deleteMany(conditions)
+      return Member.deleteOne(conditions)
     }
+    
+    return Member.deleteMany(conditions)
   } catch(e) {
     return e
   }
 }
 
-public.deleteOrWhere = async (conditions, options) => {
+publicAccess.deleteOrWhere = async (conditions, options) => {
 
 }
 
-const MemberDb = public;
+const MemberDb = publicAccess;
 
 module.exports = MemberDb;
